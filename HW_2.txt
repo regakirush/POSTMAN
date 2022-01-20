@@ -1,21 +1,53 @@
 HW_2 
 
-
 http://162.55.220.72:5005/first
 1. Отправить запрос.
 2. Статус код 200
 3. Проверить, что в body приходит правильный string.
 
-http://162.55.220.72:5005/user_info_3
-1. Отправить запрос.
-2. Статус код 200
+http://162.55.220.72:5005/user_info_3 
+
+1. Отправить запрос. 
+True
+
+2. Статус код 200 
+True
+
 3. Спарсить response body в json.
+var jsonData = pm.response.json();
+ 
+
 4. Проверить, что name в ответе равно name s request (name вбить руками.)
+pm.test("User name", function () {
+       pm.expect(jsonData.name).to.eql("Regina");
+});
+
 5. Проверить, что age в ответе равно age s request (age вбить руками.)
+pm.test("User age", function () {
+       pm.expect(jsonData.age).to.eql("23")
+})
+
 6. Проверить, что salary в ответе равно salary s request (salary вбить руками.)
+pm.test("User saiary", function () {
+       pm.expect(jsonData.salary).to.eql(3000)
+})
+
 7. Спарсить request.
+var jsonData = request.data;
+
 8. Проверить, что name в ответе равно name s request (name забрать из request.)
+console.log(request.data.name);
+var requestJson=request.data;
+var responseJson=pm.response.json();
+pm.expect(responseJson.name).to.eql(requestJson.name);
+
 9. Проверить, что age в ответе равно age s request (age забрать из request.)
+console.log(request.data.age);
+pm.expect(responseJson.age).to.eql(requestJson.age);
+
 10. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
+console.log(request.data.salary);
+pm.expect(responseJson.salary).to.eql(+requestJson.salary);
+
 11. Вывести в консоль параметр family из response.
 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
