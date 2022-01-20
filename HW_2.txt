@@ -14,16 +14,36 @@ True
 True
 
 3. Спарсить response body в json.
+var jsonData = pm.response.json();
+ 
+
+4. Проверить, что name в ответе равно name s request (name вбить руками.)
 pm.test("User name", function () {
     var jsonData = pm.response.json();
     pm.expect(jsonData.name).to.eql("Regina");
 });
 
-4. Проверить, что name в ответе равно name s request (name вбить руками.)
 5. Проверить, что age в ответе равно age s request (age вбить руками.)
+pm.test("User age", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.age).to.eql("23")
+})
+
 6. Проверить, что salary в ответе равно salary s request (salary вбить руками.)
+pm.test("User saiary", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.salary).to.eql(3000)
+})
+
 7. Спарсить request.
+var jsonData = pm.request.json()
+
 8. Проверить, что name в ответе равно name s request (name забрать из request.)
+pm.test("User name", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.eql("Regina")
+})
+
 9. Проверить, что age в ответе равно age s request (age забрать из request.)
 10. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
 11. Вывести в консоль параметр family из response.
