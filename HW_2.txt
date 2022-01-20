@@ -6,18 +6,17 @@ http://162.55.220.72:5005/first
 3. Проверить, что в body приходит правильный string.
 
 http://162.55.220.72:5005/user_info_3 
-{{url}}/user_info_3
 
 1. Отправить запрос. 
 True
 
 2. Статус код 200 
-False
+True
 
 3. Спарсить response body в json.
-pm.test("Your test name", function () {
+pm.test("User name", function () {
     var jsonData = pm.response.json();
-    pm.expect(jsonData.value).to.eql(100);
+    pm.expect(jsonData.name).to.eql("Regina");
 });
 
 4. Проверить, что name в ответе равно name s request (name вбить руками.)
