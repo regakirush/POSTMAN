@@ -55,3 +55,5 @@ pm.environment.set("family", response.data.family);
 console.log(response.data.family);
 
 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
+console.log(request.data.age);
+pm.expect(responseJson.u_salary_1_5_year).to.eql(+requestJson.salary*4);
