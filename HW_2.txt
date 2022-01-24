@@ -50,6 +50,7 @@ console.log(request.data.salary);
 pm.expect(responseJson.salary).to.eql(+requestJson.salary);
 
 11. Вывести в консоль параметр family из response.
-console.log("family");
+console.log(request.data.family);
+pm.expext(responseJson.family).to.eql(requestJson.family);
 
 12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)
