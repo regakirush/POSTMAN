@@ -20,8 +20,12 @@ pm.test ("Chek age", function() {
 })
 
 7. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
+pm.test ("Chek salary", function(){
+    pm.expect(responseData.salary).to.eql(4000);
+})
 
 8. Вывести в консоль параметр family из response.
+console.log(responseData.family);
 
 9. Проверить, что у параметра dog есть параметры name.
 
