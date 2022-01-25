@@ -28,6 +28,9 @@ pm.test ("Chek salary", function(){
 console.log(responseData.family);
 
 9. Проверить, что у параметра dog есть параметры name.
+pm.test ("Chek dog params", function(){
+    pm.response.to.have.body("dog");
+}
 
 10. Проверить, что у параметра dog есть параметры age.
 
