@@ -10,14 +10,27 @@ var jsonData = pm.response.json();
 var requestData = request.data;
 
 5. ѕроверить, что name в ответе равно name s request (name забрать из request.)
+pm.test ("Chek name", function () {
+    pm.expect(responseData.name).to.eql("Regina");
+})
 
 6. ѕроверить, что age в ответе равно age s request (age забрать из request.)
+pm.test ("Chek age", function() {
+    pm.expect(responseData.age).to.eql("23");
+})
 
 7. ѕроверить, что salary в ответе равно salary s request (salary забрать из request.)
+pm.test ("Chek salary", function(){
+    pm.expect(responseData.salary).to.eql(4000);
+})
 
 8. ¬ывести в консоль параметр family из response.
+console.log(responseData.family);
 
 9. ѕроверить, что у параметра dog есть параметры name.
+pm.test ("Chek dog params", function(){
+    pm.response.to.have.body("dog");
+}
 
 10. ѕроверить, что у параметра dog есть параметры age.
 
