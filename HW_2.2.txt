@@ -27,6 +27,7 @@ pm.test ("Chek salary", function(){
 8. Вывести в консоль параметр family из response.
 console.log(responseData.family);
 
+<<<<<<< HEAD
 9. Проверить, что у параметра dog есть параметры name.
 pm.test("Chek dog", function () {
        pm.expect(responseData.family.pets.dog).to.have.property("name");
@@ -46,6 +47,12 @@ pm.test("Chek name Luky", function () {
 pm.test("Chek age 4", function () {
     pm.expect(responseData.family.pets.dog.age).to.eql(4);
 })
+=======
+9. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ Сѓ РїР°СЂР°РјРµС‚СЂР° dog РµСЃС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ name.
+pm.test ("Chek dog params", function(){
+    pm.response.to.have.body("dog");
+}
+>>>>>>> 346920747cea43e55ac08b00ccddbacef808a217
 
 
 
