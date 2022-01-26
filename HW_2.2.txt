@@ -1,58 +1,52 @@
 http://162.55.220.72:5005/object_info_3
 
-1. Отправить запрос.
-2. Статус код 200
+1. РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ.
+2. РЎС‚Р°С‚СѓСЃ РєРѕРґ 200
 
-3. Спарсить response body в json.
+3. РЎРїР°СЂСЃРёС‚СЊ response body РІ json.
 var jsonData = pm.response.json();
 
-4. Спарсить request.
+4. РЎРїР°СЂСЃРёС‚СЊ request.
 var requestData = request.data;
 
-5. Проверить, что name в ответе равно name s request (name забрать из request.)
+5. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ name РІ РѕС‚РІРµС‚Рµ СЂР°РІРЅРѕ name s request (name Р·Р°Р±СЂР°С‚СЊ РёР· request.)
 pm.test ("Chek name", function () {
     pm.expect(responseData.name).to.eql("Regina");
 })
 
-6. Проверить, что age в ответе равно age s request (age забрать из request.)
+6. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ age РІ РѕС‚РІРµС‚Рµ СЂР°РІРЅРѕ age s request (age Р·Р°Р±СЂР°С‚СЊ РёР· request.)
 pm.test ("Chek age", function() {
     pm.expect(responseData.age).to.eql("23");
 })
 
-7. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
+7. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ salary РІ РѕС‚РІРµС‚Рµ СЂР°РІРЅРѕ salary s request (salary Р·Р°Р±СЂР°С‚СЊ РёР· request.)
 pm.test ("Chek salary", function(){
     pm.expect(responseData.salary).to.eql(4000);
 })
 
-8. Вывести в консоль параметр family из response.
+8. Р’С‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ РїР°СЂР°РјРµС‚СЂ family РёР· response.
 console.log(responseData.family);
 
 <<<<<<< HEAD
-9. Проверить, что у параметра dog есть параметры name.
+9. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ Сѓ РїР°СЂР°РјРµС‚СЂР° dog РµСЃС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ name.
 pm.test("Chek dog", function () {
        pm.expect(responseData.family.pets.dog).to.have.property("name");
 });
 
-10. Проверить, что у параметра dog есть параметры age.
+10. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ Сѓ РїР°СЂР°РјРµС‚СЂР° dog РµСЃС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ age.
 pm.test("Chek dog age", function () {
     pm.expect(responseData.family.pets.dog).to.have.property("age");
 });
 
-11. Проверить, что параметр name имеет значение Luky.
+11. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РїР°СЂР°РјРµС‚СЂ name РёРјРµРµС‚ Р·РЅР°С‡РµРЅРёРµ Luky.
 pm.test("Chek name Luky", function () {
     pm.expect(responseData.family.pets.dog.name).to.eql("Luky");
 });
 
-12. Проверить, что параметр age имеет значение 4.
+12. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РїР°СЂР°РјРµС‚СЂ age РёРјРµРµС‚ Р·РЅР°С‡РµРЅРёРµ 4.
 pm.test("Chek age 4", function () {
     pm.expect(responseData.family.pets.dog.age).to.eql(4);
 })
-=======
-9. РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ Сѓ РїР°СЂР°РјРµС‚СЂР° dog РµСЃС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ name.
-pm.test ("Chek dog params", function(){
-    pm.response.to.have.body("dog");
-}
->>>>>>> 346920747cea43e55ac08b00ccddbacef808a217
 
 
 
