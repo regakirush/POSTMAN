@@ -1,1 +1,50 @@
+http://162.55.220.72:5005/object_info_4
 
+1. Отправить запрос.
+2. Статус код 200
+
+3. Спарсить response body в json.
+var responseData = pm.response.json();
+
+4. Спарсить request.
+var requestData = pm.request.url.query.toObject();
+
+5. Проверить, что name в ответе равно name s request (name забрать из request.)
+pm.test("Chek name", function() {
+           pm.expect(responseData.name).to.eql(requestData.name);
+});
+
+6. Проверить, что age в ответе равно age из request (age забрать из request.)
+pm.test("Chek age", function() {
+    pm.expect(responseData.age).to.eql(+requestData.age);
+});
+
+7. Вывести в консоль параметр salary из request.
+console.log(requestData.salary);
+
+8. Вывести в консоль параметр salary из response.
+console.log(responseData.salary);
+
+9. Вывести в консоль 0-й элемент параметра salary из response.
+console.log(responseData.salary[0]);
+
+10. Вывести в консоль 1-й элемент параметра salary параметр salary из response.
+console.log(responseData.salary[1]);
+
+11. Вывести в консоль 2-й элемент параметра salary параметр salary из response.
+console.log(responseData.salary[2]);
+
+12. Проверить, что 0-й элемент параметра salary равен salary из request (salary забрать из request.)
+pm.test ("Chek salary 0", function(){
+    pm.expect(responseData.salary[0]).to.eql(+requestData.salary);
+});
+
+13. Проверить, что 1-й элемент параметра salary равен salary*2 из request (salary забрать из request.)
+pm.test("Chek salary 1*2", function() {
+    pm.expect(+responseData.salary[1]).to.eql(requestData.salary*2);
+});
+
+14. Проверить, что 2-й элемент параметра salary равен salary*3 из request (salary забрать из request.)
+pm.test("Chek salary 2*3", function() {
+    pm.expect(+responseData.salary[2]).to.eql(requestData.salary*3)
+});
