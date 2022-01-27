@@ -11,17 +11,17 @@ var requestData = request.data;
 
 5. Проверить, что name в ответе равно name s request (name забрать из request.)
 pm.test ("Chek name", function () {
-    pm.expect(responseData.name).to.eql("Regina");
+    pm.expect(responseData.name).to.eql(requestData.name);
 })
 
 6. Проверить, что age в ответе равно age s request (age забрать из request.)
 pm.test ("Chek age", function() {
-    pm.expect(responseData.age).to.eql("23");
+    pm.expect(responseData.age).to.eql(requestData.age);
 })
 
 7. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
 pm.test ("Chek salary", function(){
-    pm.expect(responseData.salary).to.eql(4000);
+    pm.expect(responseData.salary).to.eql(+requestData.salary);
 })
 
 8. Вывести в консоль параметр family из response.
