@@ -1,0 +1,66 @@
+3) http://162.55.220.72:5005/new_data
+req.
+POST
+age: int
+salary: int
+name: str
+auth_token
+
+Resp.
+{'name':name,
+  'age': int(age),
+  'salary': [salary, str(salary*2), str(salary*3)]}
+
+Тесты:
+1) Статус код 200
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+2) Проверка структуры json в ответе.
+pm.test("Schema is valid", function () {
+    var schema = {
+    "age": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "array",
+      "items": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  };
+
+    var data1 = [true, false];
+    var data2 = [true, 123];
+
+        pm.expect(tv4.validate(data1, schema)).to.be.true;
+        pm.expect(tv4.validate(data2, schema)).to.be.true;
+    });
+
+3) В ответе указаны коэффициенты умножения salary, напишите тесты по проверке правильности результата перемножения на коэффициент.
+  pm.test("Chek salary", function(){
+        pm.expect(resp_json.salary[0]).to.eql(+req_data.salary)
+    });
+
+  pm.test("Chek salary*2", function(){
+        pm.expect(+resp_json.salary[1]).to.eql(req_data.salary*2);
+    });
+
+  pm.test("Chek salary*3", function(){
+        pm.expect(+resp_json.salary[2]).to.eql(req_data.salary*3);
+    });
+
+4) проверить, что 2-й элемент массива salary больше 1-го и 0-го
+===================

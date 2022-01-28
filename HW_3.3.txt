@@ -1,0 +1,59 @@
+http://162.55.220.72:5005/test_pet_info
+req.
+POST
+age: int
+weight: int
+name: str
+auth_token
+
+
+Resp.
+{'name': name,
+ 'age': age,
+ 'daily_food':weight * 0.012,
+ 'daily_sleep': weight * 2.5}
+
+
+Тесты:
+1) Статус код 200
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+2) Проверка структуры json в ответе.
+var schema = {
+    "age": {
+      "type": "integer"
+    },
+    "daily_food": {
+      "type": "number"
+    },
+    "daily_sleep": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    }
+  };
+
+var data1 = [true, false];
+var data2 = [true, 123];
+
+pm.test('Schema is valid', function () {
+    pm.expect(tv4.validate(data1, schema)).to.be.true;
+    pm.expect(tv4.validate(data2, schema)).to.be.true;
+});
+
+3) В ответе указаны коэффициенты умножения weight, напишите тесты по проверке правильности результата перемножения на коэффициент.
+pm.test("Chek age", function(){
+    pm.expect(resp_json.age).to.eql(+req_data.age)
+});
+
+pm.test("Chek daily_food", function () {
+        pm.expect(resp_json.daily_food).to.eql(req_data.weight*0.012);
+});
+
+pm.test("Chek daily_sleep", function () {
+        pm.expect(resp_json.daily_sleep).to.eql(req_data.weight*2.5);
+});
+===================
