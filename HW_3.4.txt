@@ -14,13 +14,13 @@ Resp.
  'u_salary_1.5_year': salary * 4}
   }
 
-Тесты:
-1) Статус код 200
+РўРµСЃС‚С‹:
+1) РЎС‚Р°С‚СѓСЃ РєРѕРґ 200
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
 });
 
-2) Проверка структуры json в ответе.
+2) РџСЂРѕРІРµСЂРєР° СЃС‚СЂСѓРєС‚СѓСЂС‹ json РІ РѕС‚РІРµС‚Рµ.
 var schema = {
     "age": {
       "type": "string"
@@ -80,12 +80,12 @@ pm.test('Schema is valid', function () {
     pm.expect(tv4.validate(data2, schema)).to.be.true;
 });
 
-3) Проверить что занчение поля name = значению переменной name из окружения
+3) РџСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ Р·Р°РЅС‡РµРЅРёРµ РїРѕР»СЏ name = Р·РЅР°С‡РµРЅРёСЋ РїРµСЂРµРјРµРЅРЅРѕР№ name РёР· РѕРєСЂСѓР¶РµРЅРёСЏ
 pm.test("Chek name", function () {
             pm.expect(pm.environment.get("name")).to.eql(resp_json.name);
 });
 
-4) Проверить что занчение поля age в ответе соответсвует отправленному в запросе значению поля age
+4) РџСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ Р·Р°РЅС‡РµРЅРёРµ РїРѕР»СЏ age РІ РѕС‚РІРµС‚Рµ СЃРѕРѕС‚РІРµС‚СЃРІСѓРµС‚ РѕС‚РїСЂР°РІР»РµРЅРЅРѕРјСѓ РІ Р·Р°РїСЂРѕСЃРµ Р·РЅР°С‡РµРЅРёСЋ РїРѕР»СЏ age
 pm.test("Chek age", function () {
         pm.expect(resp_json.age).to.eql(req_data.age);
 });
