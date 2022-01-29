@@ -1,0 +1,92 @@
+http://162.55.220.72:5005/get_test_user
+req.
+POST
+age: int
+salary: int
+name: str
+auth_token
+
+Resp.
+{'name': name,
+ 'age':age,
+ 'salary': salary,
+ 'family':{'children':[['Alex', 24],['Kate', 12]],
+ 'u_salary_1.5_year': salary * 4}
+  }
+
+Тесты:
+1) Статус код 200
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+2) Проверка структуры json в ответе.
+var schema = {
+    "age": {
+      "type": "string"
+    },
+    "family": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "type": "array",
+          "items": [
+            {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ]
+        },
+        "u_salary_1_5_year": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "children",
+        "u_salary_1_5_year"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "integer"
+    }
+  };
+
+var data1 = [true, false];
+var data2 = [true, 123];
+
+pm.test('Schema is valid', function () {
+    pm.expect(tv4.validate(data1, schema)).to.be.true;
+    pm.expect(tv4.validate(data2, schema)).to.be.true;
+});
+
+3) Проверить что занчение поля name = значению переменной name из окружения
+pm.test("Chek name", function () {
+            pm.expect(pm.environment.get("name")).to.eql(resp_json.name);
+});
+
+4) Проверить что занчение поля age в ответе соответсвует отправленному в запросе значению поля age
+pm.test("Chek age", function () {
+        pm.expect(resp_json.age).to.eql(req_data.age);
+});
+===================
